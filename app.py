@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 import spotifyinfo
 app = Flask(__name__)
-socketio = SocketIO(app)
 
 @app.route('/')
 def index():
