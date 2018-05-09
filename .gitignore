@@ -6,3 +6,5 @@ lib/
 
 # Python Git Ignores
 *.pyc
+local/
+share/
