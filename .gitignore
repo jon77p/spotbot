@@ -1,0 +1,8 @@
+# Virtual Env Git Ignores
+include
+bin
+lib/
+.Python
+
+# Python Git Ignores
+*.pyc

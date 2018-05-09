@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+	<head>
+		<title>🔊 Now Playing... {{ res[0] }}</title>
+	</head>
+	<body>
+			<h1>Now Playing:</h1>
+			<h2>{{ res[0] }}<h2>
+			<h1>Artist:</h1>
+			<h2>{{ res[1] }}</h2>
+			<img src="{{ res[2] }}">
+			<script>
+				setTimeout(function(){ location.reload(); }, 3000);
+			</script>
+	</body>
+</html>
