@@ -10,7 +10,7 @@ import pprint
 #    exit()
 
 #url = input().split()[3]
-url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
+url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
 url = str(url)
 #print(url)
 
