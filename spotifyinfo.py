@@ -4,8 +4,8 @@ import os
 import pprint
 import requests
 
-url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
-url = str(url)
+#url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
+#url = str(url)
 
 def tokenreauth():
     infile = open('../secret', 'r')
@@ -16,8 +16,8 @@ def tokenreauth():
     infile.close()
     req = requests.post(url, headers=headers, data=data)
     res = req.json()
-    print(res)
-    print(res['access_token'])
+    #print(res)
+    #print(res['access_token'])
     #return res['access_token']
     outfile = open('../auth_token', 'w')
     outfile.write(res['access_token'])
@@ -30,15 +30,15 @@ def tokenreader():
     readfile.close()
     return out
 
-token = tokenreader()
+#token = tokenreader()
 
-try:
-    spotify = spotipy.Spotify(auth=token)
-except:
-    token = tokenreader()
-    spotify = spotipy.Spotify(auth=token)
+#try:
+#    spotify = spotipy.Spotify(auth=token)
+#except:
+#    token = tokenreader()
+#    spotify = spotipy.Spotify(auth=token)
 
-track = spotify.track(url)
+#track = spotify.track(url)
 
 #pprint.pprint(track)
 #print 'Track Name:', track["name"]
@@ -49,7 +49,7 @@ def tokeneval(intoken):
 #    print(intoken)
     try:
         spotify = spotipy.Spotify(auth=intoken)
-    except Exception as e:
+    except:
         print('exception in tokeneval!!! ', e)
         tokenreauth()
         return tokenreader()
@@ -64,8 +64,9 @@ def info(token):
     try:
         spotify = spotipy.Spotify(auth=token)
     # this may be totally unneccesary below...
-    except Exception as e:
+    except:
         print('exception!!!! ', e)
+        tokenreauth()
         token = tokenreader()
         print(token)
         spotify = spotipy.Spotify(auth=token)
