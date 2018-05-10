@@ -14,7 +14,8 @@ def tokenreauth():
     data = {'grant_type': 'refresh_token', 'refresh_token': f[1].strip()}
     req = requests.post(url, headers=headers, data=data)
     res = req.json()
-
+    print(res)
+    print(res['access_token'])
     return res['access_token']
 
 token = tokenreauth()
@@ -32,12 +33,20 @@ print 'Track Name:', track["name"]
 print 'Artist:', track["artists"][0]["name"]
 print 'Image:', track["album"]["images"][0]["url"]
 
-def info():
+def tokeneval(intoken):
+    try:
+        spotify = spotipy.Spotify(auth=intoken)
+    except:
+        return tokenreauth()
+    return intoken
+
+def info(token):
     url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
     url = str(url)
     try:
         spotify = spotipy.Spotify(auth=token)
-    except:
+    except Exception as e:
+        print(e)
         token = tokenreauth()
         spotify = spotipy.Spotify(auth=token)
 
