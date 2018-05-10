@@ -29,11 +29,12 @@ except:
 track = spotify.track(url)
 
 #pprint.pprint(track)
-print 'Track Name:', track["name"]
-print 'Artist:', track["artists"][0]["name"]
-print 'Image:', track["album"]["images"][0]["url"]
+#print 'Track Name:', track["name"]
+#print 'Artist:', track["artists"][0]["name"]
+#print 'Image:', track["album"]["images"][0]["url"]
 
 def tokeneval(intoken):
+#    print(intoken)
     try:
         spotify = spotipy.Spotify(auth=intoken)
     except:
@@ -43,11 +44,15 @@ def tokeneval(intoken):
 def info(token):
     url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
     url = str(url)
+    while url == "oade" or url == "aspotify" or url == "US":
+        url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
+        url = str(url)
     try:
         spotify = spotipy.Spotify(auth=token)
     except Exception as e:
         print(e)
         token = tokenreauth()
+        print(token)
         spotify = spotipy.Spotify(auth=token)
 
     track = spotify.track(url)
