@@ -5,7 +5,9 @@ token = spotifyinfo.tokenreauth()
 
 @app.route('/')
 def index():
-    res = spotifyinfo.info(spotifyinfo.tokeneval(token))
+    infile = open('../auth_token', 'r')
+    res = spotifyinfo.info(spotifyinfo.tokeneval(infile.readline().strip()))
+    infile.close()
     return render_template('index.html', res=res)
 
 if __name__ == '__main__':
