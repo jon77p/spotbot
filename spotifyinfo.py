@@ -36,7 +36,7 @@ def tokeneval(intoken):
 def info(token):
     url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
     url = str(url)
-    while url == "aspotify":
+    while url == "aspotify" or url == "oade":
         url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
         url = str(url)
 
