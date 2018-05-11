@@ -34,13 +34,13 @@ def tokeneval(intoken):
     return intoken
 
 def info(token):
-    url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
+    url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
     url = str(url)
-    while url == "oade" or url == "US" or url == "ccurre" or url == "aspotify":
+    while url == "aspotify":
         url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
         url = str(url)
 
-    if url == "alted":
+    if url == "layback:Halte" or url == "layback:Starte":
         url = str('invalid')
 
     spotify = spotipy.Spotify(auth=token)
