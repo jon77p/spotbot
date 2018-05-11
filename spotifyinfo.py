@@ -4,9 +4,6 @@ import os
 import pprint
 import requests
 
-#url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
-#url = str(url)
-
 def tokenreauth():
     infile = open('../secret', 'r')
     f = infile.readlines()
@@ -16,9 +13,6 @@ def tokenreauth():
     infile.close()
     req = requests.post(url, headers=headers, data=data)
     res = req.json()
-    #print(res)
-    #print(res['access_token'])
-    #return res['access_token']
     outfile = open('../auth_token', 'w')
     outfile.write(res['access_token'])
     outfile.close()
@@ -30,23 +24,7 @@ def tokenreader():
     readfile.close()
     return out
 
-#token = tokenreader()
-
-#try:
-#    spotify = spotipy.Spotify(auth=token)
-#except:
-#    token = tokenreader()
-#    spotify = spotipy.Spotify(auth=token)
-
-#track = spotify.track(url)
-
-#pprint.pprint(track)
-#print 'Track Name:', track["name"]
-#print 'Artist:', track["artists"][0]["name"]
-#print 'Image:', track["album"]["images"][0]["url"]
-
 def tokeneval(intoken):
-#    print(intoken)
     try:
         spotify = spotipy.Spotify(auth=intoken)
     except:
@@ -58,18 +36,17 @@ def tokeneval(intoken):
 def info(token):
     url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
     url = str(url)
-    while url == "oade" or url == "aspotify" or url == "US" or url == "ccurre":
+    while url == "oade" or url == "US" or url == "ccurre":
         url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
         url = str(url)
-    try:
-        spotify = spotipy.Spotify(auth=token)
-    # this may be totally unneccesary below...
-    except:
-        print('exception!!!! ', e)
-        tokenreauth()
-        token = tokenreader()
-        print(token)
-        spotify = spotipy.Spotify(auth=token)
 
-    track = spotify.track(url)
+    if url == "aspotify" or url == "topped":
+        url = str('invalid')
+
+    spotify = spotipy.Spotify(auth=token)
+
+    try:
+        track = spotify.track(url)
+    except:
+        track = {"name": "N/A", "artists": [{"name": "N/A"}], "album": {"images": [{"url": "static/img/spotify_connect.png"}]}}
     return track["name"], track["artists"][0]["name"], track["album"]["images"][0]["url"]
