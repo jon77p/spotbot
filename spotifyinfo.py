@@ -36,11 +36,11 @@ def tokeneval(intoken):
 def info(token):
     url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
     url = str(url)
-    while url == "oade" or url == "US" or url == "ccurre":
+    while url == "oade" or url == "US" or url == "ccurre" or url == "aspotify":
         url = open('/home/pi/raspotify.log', 'r').readlines()[-2].split()[-1][1:-1]
         url = str(url)
 
-    if url == "aspotify" or url == "topped":
+    if url == "alted":
         url = str('invalid')
 
     spotify = spotipy.Spotify(auth=token)
