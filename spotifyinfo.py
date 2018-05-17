@@ -47,6 +47,7 @@ def info(token):
 
     try:
         track = spotify.track(url)
-    except:
+    except Exception as e:
+        print(e)
         track = {"name": "N/A", "artists": [{"name": "N/A"}], "album": {"images": [{"url": "static/img/spotify_connect.png"}]}}
     return track["name"], track["artists"][0]["name"], track["album"]["images"][0]["url"]
