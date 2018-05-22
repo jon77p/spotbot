@@ -23,6 +23,18 @@ body {
 footer {
 	color: #fff !important;
 }
+.btn {
+	background-color: #1ecd97;
+	border-radius: 2em;
+	border: 0.2em solid #1ecd97;
+	color: #333;
+	cursor: pointer;
+	font-size: 3vmin;
+	padding: 0.7em 1.5em;
+}
+.btn-spotify {
+	
+}
 		</style>
 	</head>
 	<body class="text-center">
@@ -33,6 +45,8 @@ footer {
 				<h1 class="cover-heading">Artist: {{ res[1] }}</h1>
 				<br>
 				<img src="{{ res[2] }}">
+				<br>
+				<button class="btn btn-spotify" href="{{ res[3] }}">Open on Spotify</button>
 			</main>
 			<footer class="mastfoot mt-auto">
 				<div class="inner">
