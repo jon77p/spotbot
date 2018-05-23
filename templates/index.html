@@ -9,11 +9,13 @@ body {
 	background-color: unset;
 	text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .85);
 }
-#display {
-	height: 100%;
-}
-#display .col-lg-auto {
-	transform: translate(-50%, -50%);
+.center-div {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 .bg-img {
 	background-image: url('{{ res[2] }}');
@@ -58,10 +60,10 @@ footer {
 	</head>
 	<body class="text-center">
 		<div class="bg-img d-flex w-100 h-100"></div>
-		<div class="container" id="display">
+		<div class="container">
 			<div class="row align-items-center">
 				<div class="col"></div>
-				<div class="col-lg-auto">
+				<div class="col-lg-auto center-div">
 					<main role="main" class="innver cover">
 						<h1 class="cover-heading">Now Playing: {{ res[0] }}</h1>
 						<h1 class="cover-heading">Artist: {{ res[1] }}</h1>
