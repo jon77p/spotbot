@@ -9,15 +9,6 @@ body {
 	background-color: unset;
 	text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .85);
 }
-.center-div {
-	height: 100%;
-	position: absolute;
-	margin: auto;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
 .bg-img {
 	background-image: url('{{ res[2] }}');
 	height: 100% !important;
@@ -41,7 +32,7 @@ footer {
 	text-transform: uppercase;
 	letter-spacing: .16em;
 	margin: 20px 0;
-	padding: 7px 22px;
+	padding: 14px 29px;
 	text-align: center;
 	border-radius: 500px;
 	border: 0;
@@ -57,33 +48,41 @@ footer {
 .btn a {
 	text-decoration: none;
 }
+img {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.container {
+	height: 100%;
+}
 		</style>
 	</head>
 	<body class="text-center">
 		<div class="bg-img d-flex w-100 h-100"></div>
 		<div class="container">
-			<div class="row align-items-center">
-				<div class="col"></div>
-				<div class="col-lg-auto center-div">
-					<main role="main" class="inner cover">
-						<h1 class="cover-heading">Now Playing: {{ res[0] }}</h1>
-						<h1 class="cover-heading">Artist: {{ res[1] }}</h1>
-						<br>
-						<img src="{{ res[2] }}">
-						<br>
-						<button class="btn" id="btn-spotify" onclick="window.location.href='{{ res[3] }}'">Open on Spotify</button>
-					</main>
-					<footer class="mastfoot mt-auto">
-						<div class="inner">
-							<p>Frontend and Backend developed by <a href="https://github.com/jon77p">Jon Prentice</a>.</p>
-						</div>
-					</footer>
-				</div>
-				<div class="col"></div>
+			<div class="content">
+				<main role="main" class="inner cover">
+					<h1 class="cover-heading">Now Playing: {{ res[0] }}</h1>
+					<h1 class="cover-heading">Artist: {{ res[1] }}</h1>
+					<br>
+					<img src="{{ res[2] }}">
+					<br>
+					<button class="btn" id="btn-spotify" onclick="window.location.href='{{ res[3] }}'">Open on Spotify</button>
+				</main>
+				<footer class="mastfoot mt-auto">
+					<div class="inner">
+						<p>Frontend and Backend developed by <a href="https://github.com/jon77p">Jon Prentice</a>.</p>
+					</div>
+				</footer>
 			</div>
 		</div>
 		<script>
 			setTimeout(function(){ location.reload(); }, 3100);
+		</script>
+		<script src="static/js/fit.js"></script>
+		<script>
+//			var foo = document.querySelector('.wrapper1');
+			fit ( document.querySelector('.content'), document.querySelector('.container'), {vAlign: fit.TOP, cover: false, watch: true});
 		</script>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

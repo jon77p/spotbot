@@ -5,7 +5,7 @@ spotifyinfo.tokenreauth()
 
 @app.route('/')
 def index():
-    res = "N/A", "N/A", "static/img/spotify_connect.png", "https://spotify.com/us/404" 
+    res = "N/A", "N/A", "static/img/spotify_connect.png", "https://open.spotify.com"
     try:
         infile = open('../auth_token', 'rw')
     except:
