@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI to serve spotipi
+After=network.target
+
+[Service]
+User=pi
+Group=www-data
+WorkingDirectory=/home/pi/spotify_display/spotipy
+Environment="PATH=/home/pi/spotify_display/spotipy/bin"
+ExecStart=/home/pi/spotify_display/spotipy/bin/uwsgi --ini spotipi.ini
+
+[Install]
+WantedBy=multi-user.target
