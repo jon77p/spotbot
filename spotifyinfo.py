@@ -34,23 +34,23 @@ def tokeneval(intoken):
     return intoken
 
 def info(token):
-    # url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
-    url = open('~/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
+    url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
+    # url = open('~/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
     url = str(url)
-    while url == "aspotify" or url == "oade":
-        # url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
-        url = open('~/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
+    while url == "aspotify" or url == "oade" or url == "aspotify":
+        
+        url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
+        # url = open('~/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
 
         url = str(url)
 
-    if url == "layback:Halte" or url == "layback:Starte":
-        url = str('invalid')
+        if url == "layback:Halte" or url == "layback:Starte" or url == "aspotify":
+            url = str('invalid')
 
     spotify = spotipy.Spotify(auth=token)
 
     try:
         track = spotify.track(url)
     except Exception as e:
-        print(e)
         track = {"name": "N/A", "artists": [{"name": "N/A"}], "album": {"images": [{"url": "static/img/spotify_connect.png"}]}, "external_urls": {"spotify": "N/A"}}
     return track["name"], track["artists"][0]["name"], track["album"]["images"][0]["url"], track["external_urls"]["spotify"]
