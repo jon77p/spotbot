@@ -53,4 +53,4 @@ def info(token):
     except Exception as e:
         print(e)
         track = {"name": "N/A", "artists": [{"name": "N/A"}], "album": {"images": [{"url": "static/img/spotify_connect.png"}]}, "external_urls": {"spotify": "N/A"}}
-    return track["name"], track["artists"][0]["name"], track["album"]["images"][0]["url"], track["external_urls"]["spotify"]
+    return track["name"], track["artists"][0]["name"], track["album"]["images"][0]["url"], track["uri"]
