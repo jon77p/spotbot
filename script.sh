@@ -1,6 +1,8 @@
 #!/bin/bash
-currentstate=$(curl -s 'https://thewhitehat.club/status.json' | jq -r '.lab_open')
-if [[ $currentstate == true ]]; then
+json=$(curl -s -f 'https://thewhitehat.club/status.json')
+currentstate=$(echo $json | jq -r '.lab_open')
+coffee=$(echo $json | jq -r '.coffee')
+if [[ $currentstate == true || $coffee == true ]]; then
 	echo "Starting Raspotify..."
 	$(sudo systemctl start raspotify.service)
 
@@ -17,7 +19,7 @@ if [[ $currentstate == true ]]; then
 		echo "$currentlog" >> /home/pi/raspotify.log
 	fi
 	prevstate=false
-else
+elif [[ $currentstate == false && $coffee == false ]]; then
 	echo "Stopping Raspotify..."
 	$(sudo systemctl stop raspotify.service)
 	$(rm /home/pi/raspotify.log)

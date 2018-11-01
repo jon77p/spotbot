@@ -8,3 +8,5 @@ lib/
 *.pyc
 local/
 share/
+pip-selfcheck.json
+spotipi.sock
