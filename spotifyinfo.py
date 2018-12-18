@@ -27,20 +27,18 @@ def tokenreader():
 def tokeneval(intoken):
     try:
         spotify = spotipy.Spotify(auth=intoken)
-    except:
+    except Exception as e:
         print('exception in tokeneval!!! ', e)
         tokenreauth()
         return tokenreader()
     return intoken
 
-def info(token):
-    url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
-    # url = open('~/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
+def info(token, logfile):
+    url = open(logfile, 'r').readlines()[-1].split()[-1][1:-1]
     url = str(url)
     while url == "aspotify" or url == "oade" or url == "aspotify":
         
-        url = open('/home/pi/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
-        # url = open('~/raspotify.log', 'r').readlines()[-1].split()[-1][1:-1]
+        url = open(logfile, 'r').readlines()[-1].split()[-1][1:-1]
 
         url = str(url)
 
@@ -53,4 +51,4 @@ def info(token):
         track = spotify.track(url)
     except Exception as e:
         track = {"name": "N/A", "artists": [{"name": "N/A"}], "album": {"images": [{"url": "static/img/spotify_connect.png"}]}, "external_urls": {"spotify": "N/A"}}
-    return track["name"], track["artists"][0]["name"], track["album"]["images"][0]["url"], track["uri"]
+    return {"track": track["name"], "artist": track["artists"][0]["name"], "img": track["album"]["images"][0]["url"], "uri": track["uri"]}

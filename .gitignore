@@ -10,3 +10,5 @@ local/
 share/
 pip-selfcheck.json
 spotipi.sock
+
+.vscode

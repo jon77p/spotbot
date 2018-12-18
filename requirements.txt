@@ -1,3 +1,6 @@
 Flask
 spotipy
 uwsgi
+eventlet
+flask_socketio
+flask_restful
