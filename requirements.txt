@@ -1,6 +1,6 @@
 Flask
 spotipy
-uwsgi
 eventlet
+gunicorn
 flask_socketio
 flask_restful
