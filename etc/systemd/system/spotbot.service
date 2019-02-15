@@ -7,7 +7,7 @@ User=spotbot
 Group=www-data
 WorkingDirectory=/home/spotbot/spotbot
 Environment="PATH=/home/spotbot/spotbot/bin"
-ExecStart=/home/spotbot/spotbot/bin/gunicorn --worker-class eventlet -w 1 -b 127.0.0.1:5000 app:app --access-logfile /var/log/spotbot.log --log-file /var/log/spotbot.log
+ExecStart=/home/spotbot/spotbot/bin/gunicorn --worker-class eventlet -w 1 -b 127.0.0.1:5000 --error-logfile /var/log/spotbot_error.log --access-logfile /var/log/spotbot_access.log --capture-output --log-level debug --reload app:app
 
 [Install]
 WantedBy=multi-user.target
