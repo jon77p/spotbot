@@ -1,13 +1,13 @@
 [Unit]
-Description=uWSGI to serve spotipi
+Description=gunicorn to serve spotbot
 After=network.target
 
 [Service]
-User=pi
+User=spotbot
 Group=www-data
-WorkingDirectory=/home/pi/spotbot
-Environment="PATH=/home/pi/spotbot/bin"
-ExecStart=/home/pi/spotbot/bin/gunicorn --worker-class eventlet -w 1 -b 127.0.0.1:5000 app:app --access-logfile /var/log/spotbot.log --log-file /var/log/spotbot.log
+WorkingDirectory=/home/spotbot/spotbot
+Environment="PATH=/home/spotbot/spotbot/bin"
+ExecStart=/home/spotbot/spotbot/bin/gunicorn --worker-class eventlet -w 1 -b 127.0.0.1:5000 app:app --access-logfile /var/log/spotbot.log --log-file /var/log/spotbot.log
 
 [Install]
 WantedBy=multi-user.target

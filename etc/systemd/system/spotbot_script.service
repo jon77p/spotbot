@@ -3,9 +3,9 @@ Description=Runs the necessary script for the Spotipi Service
 
 [Service]
 Type=oneshot
-User=pi
-WorkingDirectory=/home/pi/spotbot
-ExecStart=/home/pi/spotbot/script.sh -dev /home/pi/raspotify.log http://localhost
+User=spotbot
+WorkingDirectory=/home/spotbot/spotbot
+ExecStart=/home/spotbot/spotbot/script.sh -dev /home/spotbot/librespot.log http://localhost
 
 [Install]
 WantedBy=multi-user.target

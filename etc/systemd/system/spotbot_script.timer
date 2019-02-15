@@ -1,5 +1,5 @@
 [Unit]
-Description=Run spotipi_script.service every 2s
+Description=Run spotbot_script.service every 2s
 
 [Timer]
 AccuracySec=1s
