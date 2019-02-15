@@ -1,0 +1,19 @@
+[Unit]
+Description=Librespot service for Spotbot
+After=network.target
+
+[Service]
+User=spotbot
+Group=spotbot
+Restart=always
+RestartSec=10
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -m 0755 -p /var/cache/librespot ; /bin/chown spotbot:spotbot /var/cache/librespot
+Environment="DEVICE_NAME=SecLab"
+Environment="BITRATE=160"
+Environment="CACHE_ARGS=--disable-audio-cache"
+Environment="VOLUME_ARGS=--enable-volume-normalisation --linear-volume --initial-volume=50"
+ExecStart=/usr/bin/librespot --name ${DEVICE_NAME} --bitrate ${BITRATE} $CACHE_ARGS $VOLUME_ARGS $OPTIONS
+
+[Install]
+WantedBy=multi-user.target

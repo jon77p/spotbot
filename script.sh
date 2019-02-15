@@ -1,6 +1,6 @@
 #!/bin/bash
-json=$(curl -s -f 'https://thewhitehat.club/status.json')
-currentstate=$(echo $json | jq -r '.lab_open')
+json=$(curl -s -f 'https://thewhitehat.club/api/status')
+currentstate=$(echo $json | jq -r '.data.status')
 development=false
 if [[ $# != "2" && $# != "3" ]]; then
 	echo "$#"
@@ -15,10 +15,9 @@ else
 	logfile=$1
 	url=$2
 fi
-coffee=$(echo $json | jq -r '.coffee')
-if [[ $currentstate == true || $coffee == true || $development == true ]]; then
-	echo "Starting Raspotify..."
-	$(sudo systemctl start raspotify.service)
+if [[ $currentstate == 'open' ]]; then
+	echo "Starting Librespot..."
+	$(sudo systemctl start librespot.service)
 
 	if [[ $(cat $logfile | tail -f -n 1) == "Playback:Halted" ]]
 	then
@@ -26,7 +25,7 @@ if [[ $currentstate == true || $coffee == true || $development == true ]]; then
 	fi
 
 	prevlog=$(cat $logfile | tail -f -n 1)
-	currentlog=$(systemctl status raspotify | tail -f -n 2 | head -n 1)
+	currentlog=$(systemctl status librespot.service | tail -f -n 2 | head -n 1)
 
 	if [ "$currentlog" != "$prevlog" ]
 	then
@@ -34,9 +33,9 @@ if [[ $currentstate == true || $coffee == true || $development == true ]]; then
 		curl $url/api/refresh -d "data=test" -X PUT
 	fi
 	prevstate=false
-elif [[ $currentstate == false && $coffee == false ]]; then
-	echo "Stopping Raspotify..."
-	$(sudo systemctl stop raspotify.service)
+else
+	echo "Stopping Librespot..."
+	$(sudo systemctl stop librespot.service)
 	$(rm $logfile)
 	$(touch $logfile)
 	echo "Playback:Halted" >> $logfile
