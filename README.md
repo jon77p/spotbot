@@ -70,6 +70,6 @@ sudo ln -s /etc/nginx/sites-available/spotbot /etc/nginx/sites-enabled/spotbot
 7. Add the following lines to your user crontab:
 ```bash
 45 * * * * rm auth_token; authtoken
-00 00 * * * rm raspotify.log; touch raspotify.log
+00 00 * * * rm librespot.log; touch librespot.log
 ```
 8. The site should now be live at your machine's IP address.
