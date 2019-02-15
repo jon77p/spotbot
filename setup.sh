@@ -3,6 +3,7 @@ sudo ln -s etc/systemd/system/librespot.service /etc/systemd/system/librespot.se
 sudo ln -s etc/systemd/system/spotbot.service /etc/systemd/system/spotbot.service
 sudo ln -s etc/systemd/system/spotbot_script.service /etc/systemd/system/spotbot_script.service
 sudo ln -s etc/systemd/system/spotbot_script.timer /etc/systemd/system/spotbot_script.timer
+sudo systemctl daemon-reload
 sudo systemctl start librespot.service
 sudo systemctl enable librespot.service
 sudo systemctl start spotbot.service
