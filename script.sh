@@ -1,5 +1,5 @@
 #!/bin/bash
-json=$(curl -s -f 'https://thewhitehat.club/api/status')
+json=$(curl -s -f 'https://thewhitehat.club/api/v1/status')
 currentstate=$(echo $json | jq -r '.data.status')
 development=false
 if [[ $# != "2" && $# != "3" ]]; then
