@@ -43,7 +43,7 @@ def info(token, logfile):
     if match:
         url = match.group(0)
     else:
-        count = -1;
+        count = -1
         while match is None:
             url = open(logfile, 'r').readlines()[count]
             match = pattern.search(str(url))
