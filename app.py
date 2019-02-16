@@ -49,6 +49,10 @@ def get_nowplaying():
 
 ###### API ######
 
+# Change this when major API version rewrites occur!
+# (Although support for older versions is recommended to be kept live too)
+version = 1
+
 class Refresh(Resource):
     def get(self):
         return {'message': 'refreshing devices!'}
@@ -64,13 +68,13 @@ class Refresh(Resource):
         else:
             return {'message': 'invalid'}
 
-api.add_resource(Refresh, '/api/refresh')
+api.add_resource(Refresh, '/api/' + 'v' + str(version) + '/refresh')
 
 class Info(Resource):
     def get(self):
         return getspotify_np()
 
-api.add_resource(Info, '/api/info')
+api.add_resource(Info, '/api/' + 'v' + str(version) + '/info')
 
 ###### Functions ######
 
