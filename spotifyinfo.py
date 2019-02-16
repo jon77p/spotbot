@@ -3,6 +3,7 @@ import sys
 import os
 import pprint
 import requests
+import re
 
 def tokenreauth():
     infile = open('../secret', 'r')
@@ -34,16 +35,20 @@ def tokeneval(intoken):
     return intoken
 
 def info(token, logfile):
-    url = open(logfile, 'r').readlines()[-1].split()[-1][1:-1]
-    url = str(url)
-    while url == "aspotify" or url == "oade" or url == "aspotify":
-        
-        url = open(logfile, 'r').readlines()[-1].split()[-1][1:-1]
+    url = open(logfile, 'r').readlines()[-1]
+    regex = '(?<=[\"]spotify:track:)([A-Za-z0-9])*|(Playback:((Started)|(Halted)))'
 
-        url = str(url)
-
-        if url == "layback:Halte" or url == "layback:Starte" or url == "aspotify":
-            url = str('invalid')
+    pattern = re.compile(regex, re.IGNORECASE)
+    match = pattern.search(str(url))
+    if match:
+        url = match.group(0)
+    else:
+        count = -1;
+        while match is None:
+            url = open(logfile, 'r').readlines()[count]
+            match = pattern.search(str(url))
+            count -= 1
+        url = match
 
     spotify = spotipy.Spotify(auth=token)
 

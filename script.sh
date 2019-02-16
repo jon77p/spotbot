@@ -17,7 +17,7 @@ else
 fi
 if [[ $currentstate == 'open' ]]; then
 	echo "Starting Librespot..."
-	$(sudo systemctl start librespot.service)
+	$(systemctl start librespot.service)
 
 	if [[ $(cat $logfile | tail -f -n 1) == "Playback:Halted" ]]
 	then
@@ -25,7 +25,7 @@ if [[ $currentstate == 'open' ]]; then
 	fi
 
 	prevlog=$(cat $logfile | tail -f -n 1)
-	currentlog=$(systemctl status librespot.service | tail -f -n 2 | head -n 1)
+	currentlog=$(systemctl status librespot.service | grep spotify:track: | tail -f -n 1)
 
 	if [ "$currentlog" != "$prevlog" ]
 	then
@@ -35,7 +35,7 @@ if [[ $currentstate == 'open' ]]; then
 	prevstate=false
 else
 	echo "Stopping Librespot..."
-	$(sudo systemctl stop librespot.service)
+	$(systemctl stop librespot.service)
 	$(rm $logfile)
 	$(touch $logfile)
 	echo "Playback:Halted" >> $logfile

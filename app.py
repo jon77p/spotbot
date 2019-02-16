@@ -84,12 +84,12 @@ def getspotify_np():
         spotifyinfo.tokenreauth()
         infile = open('../auth_token', 'r')
     try:
-        res = spotifyinfo.info(spotifyinfo.tokeneval(infile.readline().strip()), '/home/spotbot/raspotify.log')
+        res = spotifyinfo.info(spotifyinfo.tokeneval(infile.readline().strip()), '/home/spotbot/librespot.log')
     except:
         infile.close()
         spotifyinfo.tokenreauth()
         infile = open('../auth_token', 'r')
-        res = spotifyinfo.info(spotifyinfo.tokeneval(infile.readline().strip()), '/home/spotbot/raspotify.log')
+        res = spotifyinfo.info(spotifyinfo.tokeneval(infile.readline().strip()), '/home/spotbot/librespot.log')
     finally:
         infile.close()
         return res

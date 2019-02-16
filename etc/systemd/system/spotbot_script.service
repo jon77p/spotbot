@@ -3,7 +3,7 @@ Description=Runs the necessary script for the Spotipi Service
 
 [Service]
 Type=oneshot
-User=spotbot
+User=root
 WorkingDirectory=/home/spotbot/spotbot
 ExecStart=/home/spotbot/spotbot/script.sh -dev /home/spotbot/librespot.log http://localhost
 
