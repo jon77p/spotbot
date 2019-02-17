@@ -30,7 +30,7 @@ if [[ $currentstate == 'open' ]]; then
 	if [ "$currentlog" != "$prevlog" ]
 	then
 		echo "$currentlog" >> $logfile
-		curl $url/api/refresh -d "data=test" -X PUT
+		curl $url/api/v1/refresh -d "data=test" -X PUT
 	fi
 	prevstate=false
 else
