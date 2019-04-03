@@ -25,7 +25,7 @@ if [[ $currentstate == 'open' ]]; then
 	fi
 
 	prevlog=$(cat $logfile | tail -f -n 1)
-	currentlog=$(systemctl status librespot.service | grep spotify:track: | tail -f -n 1)
+	currentlog=$(systemctl status librespot.service --lines 1000 | grep spotify:track: | tail -n 1)
 
 	if [ "$currentlog" != "$prevlog" ]
 	then
