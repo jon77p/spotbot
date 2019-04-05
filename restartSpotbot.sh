@@ -1,8 +1,8 @@
 #!/bin/bash
 
-systemctl daemon-reload
-systemctl restart librespot.service
-systemctl restart spotbot.service
-systemctl restart nginx.service
-systemctl restart spotbot_script.service
-systemctl restart spotbot_script.timer
+sudo systemctl daemon-reload
+sudo systemctl restart librespot.service
+sudo systemctl restart spotbot.service
+sudo systemctl restart nginx.service
+sudo systemctl restart spotbot_script.service
+sudo systemctl restart spotbot_script.timer
